@@ -16,22 +16,25 @@ class TreeGraphTest{
         fun testLCAforBinaryTree(){
 
             val graph = TreeGraph()
-            val lca = GenerateTreeGivingRandomLeaf(graph.head)
+            val lca = generateTreeGivingRandomLeaf(graph.head)
             lca.createLeft()
-            val a = GenerateTreeGivingRandomLeaf(lca.left!!)
+            val a = generateTreeGivingRandomLeaf(lca.left!!)
             lca.createRight()
-            val b = GenerateTreeGivingRandomLeaf(lca.right!!)
+            val b = generateTreeGivingRandomLeaf(lca.right!!)
 
-            assertEquals(graph.lca(a,b), lca)
-
+            assertEquals(graph.lca(a,b), lca ,"LCA of separated Nodes")
+            assertEquals(graph.lca(lca, a), lca, "LCA where a is LCA")
+            assertEquals(graph.lca(a, lca), lca, "LCA where b is LCA")
+            assertEquals(graph.lca(a,a), a,"LCA of a same node is itself")
         }
 
-        private fun GenerateTreeGivingRandomLeaf(root: Node) : Node {
+
+        private fun generateTreeGivingRandomLeaf(root: Node) : Node {
             root.createLeft()
             root.createRight()
 
-            LeavesToDepth(root.left!!, 10)
-            LeavesToDepth(root.right!!, 10)
+            leavesToDepth(root.left!!, 10)
+            leavesToDepth(root.right!!, 10)
 
             var leaf = root
 
@@ -53,16 +56,16 @@ class TreeGraphTest{
             return leaf
         }
 
-        private fun LeavesToDepth(root: Node, depth:Int) {
+        private fun leavesToDepth(root: Node, depth:Int) {
             if (depth > 1){
                 if (random.nextBoolean()){
                     root.createLeft()
-                    LeavesToDepth(root.left!!,depth-1)
+                    leavesToDepth(root.left!!,depth-1)
                 }
 
                 if (random.nextBoolean()){
                     root.createRight()
-                    LeavesToDepth(root.right!!,depth-1)
+                    leavesToDepth(root.right!!,depth-1)
                 }
             }
         }
