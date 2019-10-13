@@ -1,26 +1,21 @@
 package Objects
 
-class Node (var parent:Node?) {
+class Node {
 
-    var left : Node? = null
-    var right : Node? = null
+    var parents = mutableListOf<Node>()
+    var children = mutableListOf<Node>()
 
-    fun createLeft(){
-        if(left == null) {
-            left = Node(this)
-        }
-        else throw Exception("Tried to overwrite left node")
+    fun createChild () : Node {
+        val newNode = Node()
+        children.add(newNode)
+        newNode.parents.add(this)
+        return newNode
     }
 
-    fun createRight(){
-        if(right == null) {
-            right = Node(this)
-        }
-        else throw Exception("Tried to overwrite right node")
+    fun addChild(newChild:Node){
+        children.add(newChild)
+        newChild.parents.add(this)
     }
 
-    fun hasParent() : Boolean{
-        return parent != null
-    }
 }
 

@@ -1,6 +1,6 @@
 package Objects
 
-class TreeGraph (var head: Node = Node(null)){
+class DAGraph (var head: Node = Node()){
 
     fun lca(a: Node, b:Node) : Node{
 
