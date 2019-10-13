@@ -13,7 +13,7 @@ class TreeGraphTest{
         val random = Random()
 
         @Test
-        fun testLCAforBinaryTree(){
+        fun testLCAForBinaryTree(){
 
             val graph = TreeGraph()
             val lca = generateTreeGivingRandomLeaf(graph.head)
@@ -46,8 +46,8 @@ class TreeGraphTest{
                     leaf = leaf.left!!
                 }
                 else{
-                    if(random.nextBoolean()) leaf = leaf.left!!
-                    else leaf = leaf.right!!
+                    leaf = if(random.nextBoolean()) leaf.left!!
+                    else leaf.right!!
 
 
                 }

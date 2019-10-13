@@ -18,5 +18,9 @@ class Node (var parent:Node?) {
         }
         else throw Exception("Tried to overwrite right node")
     }
+
+    fun hasParent() : Boolean{
+        return parent != null
+    }
 }
 
